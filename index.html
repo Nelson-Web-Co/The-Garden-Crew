@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Garden Crew | Nelson, NZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green: #3a7d2c;
+    --green-dark: #24501a;
+    --cream: #faf9f5;
+    --text: #24291f;
+    --muted: #6b7365;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--text);
+    background:var(--cream);
+    line-height:1.6;
+  }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; }
+
+  /* NAV */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 6%;
+    background:rgba(250,249,245,0);
+    transition:background .3s ease, box-shadow .3s ease, padding .3s ease;
+  }
+  nav.scrolled{
+    background:rgba(250,249,245,0.96);
+    box-shadow:0 2px 14px rgba(0,0,0,0.06);
+    padding:14px 6%;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.4rem;
+    font-weight:700;
+    color:#fff;
+    transition:color .3s ease;
+    letter-spacing:.3px;
+  }
+  nav.scrolled .logo{ color:var(--green-dark); }
+  .logo span{ color:#a8d98a; }
+  nav.scrolled .logo span{ color:var(--green); }
+  .nav-links{ display:flex; gap:36px; list-style:none; }
+  .nav-links a{
+    color:#fff; text-decoration:none; font-size:.95rem; font-weight:500;
+    transition:color .3s ease, opacity .2s ease;
+  }
+  nav.scrolled .nav-links a{ color:var(--text); }
+  .nav-links a:hover{ opacity:.7; }
+  .nav-cta{
+    background:var(--green); color:#fff !important; padding:10px 22px;
+    border-radius:30px; font-weight:600 !important;
+  }
+  .nav-cta:hover{ opacity:.9 !important; }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+  }
+  .photo-banner-grid{
+    position:absolute;
+    inset:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    width:100%;
+    height:100%;
+    z-index:0;
+  }
+  .banner-img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    filter:brightness(0.6) saturate(1.05);
+  }
+  .hero-overlay{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:linear-gradient(180deg, rgba(8,18,6,0.25) 0%, rgba(8,18,6,0.55) 55%, rgba(8,18,6,0.82) 100%);
+  }
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(58,125,44,0.35);
+    border:1px solid rgba(183,224,143,0.4);
+    color:#d7f0bd;
+    padding:8px 20px;
+    border-radius:30px;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:26px;
+    position:relative; z-index:3;
+  }
+  .hero-content{ position:relative; z-index:3; padding:0 20px; max-width:720px; }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    color:#fff;
+    line-height:1.1;
+    margin-bottom:20px;
+    text-shadow:0 4px 24px rgba(0,0,0,0.5);
+  }
+  .hero h1 em{ font-style:italic; color:#b7e08f; }
+  .hero p{
+    color:#eef2e8; font-size:1.12rem; max-width:520px; margin:0 auto 32px;
+    text-shadow:0 2px 10px rgba(0,0,0,0.4);
+  }
+  .hero-buttons{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn{
+    padding:14px 30px; border-radius:30px; text-decoration:none;
+    font-weight:600; font-size:.95rem; transition:transform .2s ease, opacity .2s ease;
+    display:inline-block; letter-spacing:.3px;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--green); color:#fff; }
+  .btn-outline{ background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.6); }
+
+  .hero-ticker{
+    position:relative; z-index:3;
+    width:100%;
+    margin-top:56px;
+    background:rgba(0,0,0,0.32);
+    border-top:1px solid rgba(255,255,255,0.08);
+    padding:16px 6%;
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  .hero-ticker span{
+    color:#cfe0c0;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+  }
+
+  @media (max-width:900px){
+    .photo-banner-grid{ grid-template-columns:1fr; }
+  }
+
+  /* SECTION SHARED */
+  section{ padding:100px 6%; }
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 60px; }
+  .eyebrow{
+    color:var(--green); text-transform:uppercase; letter-spacing:2.5px;
+    font-size:.8rem; font-weight:700; margin-bottom:14px;
+  }
+  .section-head h2{ font-size:clamp(1.9rem,4vw,2.7rem); color:var(--text); }
+  .section-head p{ color:var(--muted); margin-top:16px; font-size:1.05rem; }
+
+  /* SERVICES */
+  .services{ background:#fff; }
+  .services-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:30px; max-width:1100px; margin:0 auto;
+  }
+  .service-card{
+    background:var(--cream);
+    border-radius:16px;
+    padding:38px 32px;
+    transition:transform .25s ease, box-shadow .25s ease;
+    border:1px solid rgba(0,0,0,0.04);
+  }
+  .service-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 16px 30px rgba(36,80,26,0.12);
+  }
+  .service-icon{ font-size:2rem; margin-bottom:18px; }
+  .service-card h3{ font-size:1.3rem; margin-bottom:10px; color:var(--text); }
+  .service-card p{ color:var(--muted); font-size:.97rem; }
+
+  /* GALLERY */
+  .gallery{ background:var(--cream); }
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+    max-width:1100px; margin:0 auto;
+  }
+  .gallery-item{
+    aspect-ratio:4/5;
+    border-radius:14px;
+    overflow:hidden;
+    position:relative;
+  }
+  .gallery-item img{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    filter:brightness(0.85);
+    transition:transform .4s ease;
+  }
+  .gallery-item:hover img{ transform:scale(1.04); }
+  .gallery-item::after{
+    content:attr(data-label);
+    position:absolute; bottom:0; left:0; right:0;
+    padding:20px 18px;
+    background:linear-gradient(0deg, rgba(0,0,0,0.6), transparent);
+    color:#fff; font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600;
+  }
+
+  .scroll-top{
+    position:fixed; bottom:96px; right:26px; z-index:200;
+    width:44px; height:44px; border-radius:50%;
+    background:var(--green-dark); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.2rem; text-decoration:none;
+    box-shadow:0 4px 14px rgba(0,0,0,0.25);
+    transition:transform .2s ease, opacity .2s ease;
+    opacity:0; pointer-events:none;
+  }
+  .scroll-top.visible{ opacity:1; pointer-events:all; }
+  .scroll-top:hover{ transform:translateY(-3px); }
+
+  /* WHY US */
+  .why{ background:var(--green-dark); color:#fff; }
+  .why .section-head h2, .why .section-head p{ color:#fff; }
+  .why .section-head p{ color:#c9dcbe; }
+  .why-grid{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    gap:36px; max-width:1000px; margin:0 auto;
+    justify-items:center;
+  }
+  .why-item{ text-align:center; max-width:240px; }
+  .why-item .num{
+    font-family:'Fraunces',serif; font-size:1.1rem; color:#b7e08f;
+    display:block; margin-bottom:10px; font-weight:600;
+  }
+  .why-item h3{ font-size:1.2rem; margin-bottom:8px; }
+  .why-item p{ color:#c9dcbe; font-size:.95rem; }
+
+  /* CONTACT */
+  .contact{ background:#fff; }
+  .contact-wrap{
+    max-width:900px; margin:0 auto;
+    background:var(--cream);
+    border-radius:24px;
+    padding:60px 50px;
+    text-align:center;
+  }
+  .contact-wrap h2{ font-size:clamp(1.8rem,4vw,2.4rem); margin-bottom:14px; }
+  .contact-wrap p{ color:var(--muted); margin-bottom:30px; }
+  .contact-details{
+    display:flex; gap:40px; justify-content:center; flex-wrap:wrap; margin-top:34px;
+  }
+  .contact-item{ text-align:left; }
+  .contact-item .label{
+    text-transform:uppercase; letter-spacing:2px; font-size:.75rem;
+    color:var(--green); font-weight:700; margin-bottom:6px;
+  }
+  .contact-item a{ color:var(--text); text-decoration:none; font-weight:600; font-size:1.05rem; }
+  .contact-item a:hover{ color:var(--green); }
+
+  footer{
+    background:#1a2e12; color:#a9b89c; text-align:center;
+    padding:34px 6%; font-size:.88rem;
+  }
+  footer .footer-logo{
+    font-family:'Fraunces',serif; color:#fff; font-size:1.2rem; margin-bottom:8px;
+  }
+
+  .float-call{
+    position:fixed; bottom:26px; right:26px; z-index:200;
+    width:56px; height:56px; border-radius:50%;
+    background:var(--green); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.4rem; text-decoration:none;
+    box-shadow:0 8px 20px rgba(58,125,44,0.4);
+    transition:transform .2s ease;
+  }
+  .float-call:hover{ transform:scale(1.08); }
+
+  @media (max-width:768px){
+    .nav-links{ display:none; }
+    .gallery-grid{ grid-template-columns:1fr; }
+    .contact-details{ flex-direction:column; gap:20px; align-items:center; }
+    .contact-item{ text-align:center; }
+    section{ padding:70px 6%; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="logo">The Garden <span>Crew</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Our Work</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="top">
+  <div class="photo-banner-grid">
+    <img src="garden2.jpg" alt="Expert hedge trimming and shaping" class="banner-img">
+    <img src="garden1.jpg" alt="Lawn mowing and garden care" class="banner-img">
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-badge">🌿 Nelson, New Zealand</div>
+
+  <div class="hero-content">
+    <h1>Your garden, <em>beautiful.</em></h1>
+    <p>Fully insured, professional gardening services across Nelson. Hedges, lawns and full garden maintenance at excellent rates.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
+      <a href="#services" class="btn btn-outline">Our Services</a>
+    </div>
+  </div>
+
+  <div class="hero-ticker">
+    <span>Fully Insured</span>
+    <span>·</span>
+    <span>Excellent Rates</span>
+    <span>·</span>
+    <span>Free Quotes</span>
+    <span>·</span>
+    <span>Nelson Wide</span>
+    <span>·</span>
+    <span>Hedge Trimming</span>
+    <span>·</span>
+    <span>Lawn Mowing</span>
+    <span>·</span>
+    <span>Garden Maintenance</span>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="section-head">
+    <div class="eyebrow">What We Do</div>
+    <h2>Full-service garden care</h2>
+    <p>Whatever your section needs, we've got it covered.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🌿</div>
+      <h3>Lawn Care & Mowing</h3>
+      <p>Regular mowing, edging and lawn health to keep your section looking sharp all season.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✂️</div>
+      <h3>Hedge & Tree Trimming</h3>
+      <p>Precise shaping and pruning that keeps hedges neat and trees healthy.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌸</div>
+      <h3>Garden Bed Maintenance</h3>
+      <p>Weeding, mulching and planting to keep your beds full and flourishing.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🍂</div>
+      <h3>Seasonal Tidy-Ups</h3>
+      <p>One-off clean-ups to get overgrown or neglected sections back under control.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🪴</div>
+      <h3>Garden Design & Planting</h3>
+      <p>Thoughtful planting plans that suit your space, sun and soil.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧰</div>
+      <h3>Ongoing Maintenance Plans</h3>
+      <p>Set-and-forget scheduled visits so your garden never gets away on you.</p>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="work">
+  <div class="section-head">
+    <div class="eyebrow">Recent Projects</div>
+    <h2>Our Work</h2>
+    <p>A look at some of the gardens we've helped bring back to life around Nelson.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item" data-label="Lawn & Hedge Refresh"><img src="garden1.jpg" alt="Lawn and hedge refresh"></div>
+    <div class="gallery-item" data-label="Garden Bed Makeover"><img src="garden3.jpg" alt="Garden bed makeover"></div>
+    <div class="gallery-item" data-label="Full Section Tidy-Up"><img src="garden2.jpg" alt="Full section tidy up"></div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="section-head">
+    <div class="eyebrow">Why The Garden Crew</div>
+    <h2>Local, reliable, and easy to deal with</h2>
+    <p>Here's why Nelson homeowners choose us for their gardens.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <span class="num">Local</span>
+      <h3>Nelson Based</h3>
+      <p>We know the local climate, soil and seasons — and we're just around the corner.</p>
+    </div>
+    <div class="why-item">
+      <span class="num">Reliable</span>
+      <h3>Always On Time</h3>
+      <p>We turn up when we say we will, every time.</p>
+    </div>
+    <div class="why-item">
+      <span class="num">Flexible</span>
+      <h3>One-Off or Ongoing</h3>
+      <p>Book a single tidy-up or set up a regular maintenance plan — your call.</p>
+    </div>
+    <div class="why-item">
+      <span class="num">Honest</span>
+      <h3>Straightforward Pricing</h3>
+      <p>No hidden costs. You know what you're paying before we start.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-wrap">
+    <h2>Ready for a tidier garden?</h2>
+    <p>Get in touch for a free, no-obligation quote.</p>
+    <a href="tel:0270000000" class="btn btn-primary">Call Now</a>
+    <div class="contact-details">
+      <div class="contact-item">
+        <div class="label">Phone</div>
+        <a href="tel:0270000000">027 000 0000</a>
+      </div>
+      <div class="contact-item">
+        <div class="label">Email</div>
+        <a href="mailto:hello@thegardencrewnelson.co.nz">hello@thegardencrewnelson.co.nz</a>
+      </div>
+      <div class="contact-item">
+        <div class="label">Area</div>
+        <a href="#">Nelson, NZ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">The Garden <span style="color:#a8d98a;">Crew</span></div>
+  <div>© 2026 The Garden Crew · Nelson NZ</div>
+</footer>
+
+<a class="float-call" href="tel:0270000000" title="Call The Garden Crew">📞</a>
+<a class="scroll-top" id="scrollTop" href="#top" title="Back to top">↑</a>
+
+<script>
+  window.addEventListener('scroll', function(){
+    const nav = document.getElementById('navbar');
+    if(window.scrollY > 40){ nav.classList.add('scrolled'); }
+    else{ nav.classList.remove('scrolled'); }
+    const btn = document.getElementById('scrollTop');
+    if(window.scrollY > 400){ btn.classList.add('visible'); }
+    else{ btn.classList.remove('visible'); }
+  });
+</script>
+
+</body>
+</html>
