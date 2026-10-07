@@ -3,466 +3,665 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Garden Crew | Nelson, NZ</title>
+<title>Nelson Legal | Solicitors & Barristers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --green: #3a7d2c;
-    --green-dark: #24501a;
-    --cream: #faf9f5;
-    --text: #24291f;
-    --muted: #6b7365;
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #132338;
+    --gold: #B8976A;
+    --gold-light: #D4B483;
+    --parchment: #F2EDE4;
+    --parchment-dark: #E8E1D5;
+    --slate: #4A5568;
+    --white: #FFFFFF;
+    --text-muted: #8A9BB0;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Inter', sans-serif;
-    color:var(--text);
-    background:var(--cream);
-    line-height:1.6;
-  }
-  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Inter', sans-serif; background:var(--parchment); color:var(--navy); overflow-x:hidden; }
+  h1,h2,h3,h4 { font-family:'Cormorant Garamond', serif; }
+
+  /* GOLD RULE */
+  .gold-rule { width:60px; height:1px; background:var(--gold); margin:0 0 28px; }
+  .gold-rule.center { margin:0 auto 28px; }
 
   /* NAV */
-  nav{
+  nav {
     position:fixed; top:0; left:0; right:0; z-index:100;
     display:flex; justify-content:space-between; align-items:center;
-    padding:22px 6%;
-    background:rgba(250,249,245,0);
-    transition:background .3s ease, box-shadow .3s ease, padding .3s ease;
+    padding:0 6%; height:72px;
+    background:rgba(13,27,42,0.96);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(184,151,106,0.2);
   }
-  nav.scrolled{
-    background:rgba(250,249,245,0.96);
-    box-shadow:0 2px 14px rgba(0,0,0,0.06);
-    padding:14px 6%;
+  .logo {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.3rem; font-weight:600;
+    color:var(--white); letter-spacing:2px;
+    text-transform:uppercase;
   }
-  .logo{
-    font-family:'Fraunces', serif;
-    font-size:1.4rem;
-    font-weight:700;
-    color:#fff;
-    transition:color .3s ease;
-    letter-spacing:.3px;
+  .logo span { color:var(--gold); }
+  .nav-links { display:flex; gap:36px; list-style:none; align-items:center; }
+  .nav-links a {
+    font-size:.78rem; font-weight:500;
+    color:rgba(255,255,255,0.7); text-decoration:none;
+    letter-spacing:1.5px; text-transform:uppercase;
+    transition:color .2s;
   }
-  nav.scrolled .logo{ color:var(--green-dark); }
-  .logo span{ color:#a8d98a; }
-  nav.scrolled .logo span{ color:var(--green); }
-  .nav-links{ display:flex; gap:36px; list-style:none; }
-  .nav-links a{
-    color:#fff; text-decoration:none; font-size:.95rem; font-weight:500;
-    transition:color .3s ease, opacity .2s ease;
+  .nav-links a:hover { color:var(--gold); }
+  .nav-cta {
+    background:transparent; color:var(--gold) !important;
+    border:1px solid var(--gold); padding:9px 24px;
+    font-size:.72rem !important; letter-spacing:2px !important;
+    transition:all .2s !important;
   }
-  nav.scrolled .nav-links a{ color:var(--text); }
-  .nav-links a:hover{ opacity:.7; }
-  .nav-cta{
-    background:var(--green); color:#fff !important; padding:10px 22px;
-    border-radius:30px; font-weight:600 !important;
-  }
-  .nav-cta:hover{ opacity:.9 !important; }
+  .nav-cta:hover { background:var(--gold) !important; color:var(--navy) !important; }
 
   /* HERO */
-  .hero{
-    position:relative;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    overflow:hidden;
+  .hero {
+    min-height:100vh; background:var(--navy);
+    display:grid; grid-template-columns:1fr 1fr;
+    position:relative; overflow:hidden;
+    padding-top:72px;
   }
-  .photo-banner-grid{
-    position:absolute;
-    inset:0;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    width:100%;
-    height:100%;
-    z-index:0;
+  .hero-left {
+    display:flex; flex-direction:column; justify-content:center;
+    padding:80px 8% 80px 8%;
+    position:relative; z-index:2;
   }
-  .banner-img{
-    width:100%; height:100%;
-    object-fit:cover;
-    display:block;
-    filter:brightness(0.6) saturate(1.05);
+  .hero-eyebrow {
+    font-size:.7rem; font-weight:600;
+    letter-spacing:4px; text-transform:uppercase;
+    color:var(--gold); margin-bottom:20px;
+    display:flex; align-items:center; gap:12px;
   }
-  .hero-overlay{
-    position:absolute;
-    inset:0;
-    z-index:1;
-    background:linear-gradient(180deg, rgba(8,18,6,0.25) 0%, rgba(8,18,6,0.55) 55%, rgba(8,18,6,0.82) 100%);
+  .hero-eyebrow::before {
+    content:''; width:32px; height:1px; background:var(--gold);
   }
-  .hero-badge{
-    display:inline-flex; align-items:center; gap:8px;
-    background:rgba(58,125,44,0.35);
-    border:1px solid rgba(183,224,143,0.4);
-    color:#d7f0bd;
-    padding:8px 20px;
-    border-radius:30px;
-    font-size:.78rem;
-    font-weight:700;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    margin-bottom:26px;
-    position:relative; z-index:3;
+  .hero h1 {
+    font-size:clamp(3rem, 5.5vw, 5.5rem);
+    font-weight:300; color:var(--white);
+    line-height:1.05; margin-bottom:32px;
+    letter-spacing:-1px;
   }
-  .hero-content{ position:relative; z-index:3; padding:0 20px; max-width:720px; }
-  .hero h1{
-    font-size:clamp(2.4rem, 6vw, 4.2rem);
-    color:#fff;
-    line-height:1.1;
-    margin-bottom:20px;
-    text-shadow:0 4px 24px rgba(0,0,0,0.5);
+  .hero h1 em { color:var(--gold); font-style:italic; display:block; }
+  .hero-sub {
+    color:rgba(255,255,255,0.55); font-size:.95rem;
+    line-height:1.8; max-width:420px;
+    margin-bottom:48px; font-weight:300;
   }
-  .hero h1 em{ font-style:italic; color:#b7e08f; }
-  .hero p{
-    color:#eef2e8; font-size:1.12rem; max-width:520px; margin:0 auto 32px;
-    text-shadow:0 2px 10px rgba(0,0,0,0.4);
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; }
+  .btn {
+    padding:14px 36px; font-size:.75rem;
+    letter-spacing:2px; text-transform:uppercase;
+    text-decoration:none; font-weight:600;
+    transition:all .25s; display:inline-block;
+    font-family:'Inter', sans-serif;
   }
-  .hero-buttons{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-  .btn{
-    padding:14px 30px; border-radius:30px; text-decoration:none;
-    font-weight:600; font-size:.95rem; transition:transform .2s ease, opacity .2s ease;
-    display:inline-block; letter-spacing:.3px;
-  }
-  .btn:hover{ transform:translateY(-2px); }
-  .btn-primary{ background:var(--green); color:#fff; }
-  .btn-outline{ background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.6); }
+  .btn-gold { background:var(--gold); color:var(--navy); }
+  .btn-gold:hover { background:var(--gold-light); transform:translateY(-2px); }
+  .btn-outline { background:transparent; color:var(--white); border:1px solid rgba(255,255,255,0.3); }
+  .btn-outline:hover { border-color:var(--white); transform:translateY(-2px); }
 
-  .hero-ticker{
-    position:relative; z-index:3;
-    width:100%;
-    margin-top:56px;
-    background:rgba(0,0,0,0.32);
-    border-top:1px solid rgba(255,255,255,0.08);
-    padding:16px 6%;
-    display:flex;
-    justify-content:center;
-    gap:28px;
-    flex-wrap:wrap;
+  .hero-right { position:relative; overflow:hidden; }
+  .hero-right img {
+    width:100%; height:100%; object-fit:cover;
+    filter:brightness(0.4) saturate(0.7);
   }
-  .hero-ticker span{
-    color:#cfe0c0;
-    font-size:.72rem;
-    font-weight:700;
-    letter-spacing:1.5px;
-    text-transform:uppercase;
+  .hero-right::after {
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(90deg, var(--navy) 0%, transparent 50%);
   }
 
-  @media (max-width:900px){
-    .photo-banner-grid{ grid-template-columns:1fr; }
-  }
-
-  /* SECTION SHARED */
-  section{ padding:100px 6%; }
-  .section-head{ text-align:center; max-width:640px; margin:0 auto 60px; }
-  .eyebrow{
-    color:var(--green); text-transform:uppercase; letter-spacing:2.5px;
-    font-size:.8rem; font-weight:700; margin-bottom:14px;
-  }
-  .section-head h2{ font-size:clamp(1.9rem,4vw,2.7rem); color:var(--text); }
-  .section-head p{ color:var(--muted); margin-top:16px; font-size:1.05rem; }
-
-  /* SERVICES */
-  .services{ background:#fff; }
-  .services-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-    gap:30px; max-width:1100px; margin:0 auto;
-  }
-  .service-card{
-    background:var(--cream);
-    border-radius:16px;
-    padding:38px 32px;
-    transition:transform .25s ease, box-shadow .25s ease;
-    border:1px solid rgba(0,0,0,0.04);
-  }
-  .service-card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 16px 30px rgba(36,80,26,0.12);
-  }
-  .service-icon{ font-size:2rem; margin-bottom:18px; }
-  .service-card h3{ font-size:1.3rem; margin-bottom:10px; color:var(--text); }
-  .service-card p{ color:var(--muted); font-size:.97rem; }
-
-  /* GALLERY */
-  .gallery{ background:var(--cream); }
-  .gallery-grid{
-    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
-    max-width:1100px; margin:0 auto;
-  }
-  .gallery-item{
-    aspect-ratio:4/5;
-    border-radius:14px;
-    overflow:hidden;
-    position:relative;
-  }
-  .gallery-item img{
-    width:100%; height:100%;
-    object-fit:cover;
-    display:block;
-    filter:brightness(0.85);
-    transition:transform .4s ease;
-  }
-  .gallery-item:hover img{ transform:scale(1.04); }
-  .gallery-item::after{
-    content:attr(data-label);
+  .hero-credentials {
     position:absolute; bottom:0; left:0; right:0;
-    padding:20px 18px;
-    background:linear-gradient(0deg, rgba(0,0,0,0.6), transparent);
-    color:#fff; font-family:'Fraunces',serif; font-size:1.05rem; font-weight:600;
+    background:rgba(184,151,106,0.12);
+    border-top:1px solid rgba(184,151,106,0.25);
+    display:grid; grid-template-columns:repeat(3,1fr);
+    z-index:3;
+  }
+  .credential {
+    padding:20px 0; text-align:center;
+    border-right:1px solid rgba(184,151,106,0.2);
+  }
+  .credential:last-child { border-right:none; }
+  .credential-num {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.8rem; font-weight:600;
+    color:var(--gold); display:block; line-height:1;
+    margin-bottom:4px;
+  }
+  .credential-label {
+    font-size:.65rem; color:rgba(255,255,255,0.5);
+    letter-spacing:1.5px; text-transform:uppercase;
+    font-weight:500;
   }
 
-  .scroll-top{
-    position:fixed; bottom:96px; right:26px; z-index:200;
-    width:44px; height:44px; border-radius:50%;
-    background:var(--green-dark); color:#fff;
+  /* ABOUT */
+  .about {
+    padding:120px 8%;
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:80px; align-items:center;
+    background:var(--white);
+  }
+  .about-text .eyebrow {
+    font-size:.68rem; font-weight:600;
+    letter-spacing:3px; text-transform:uppercase;
+    color:var(--gold); margin-bottom:20px; display:block;
+  }
+  .about-text h2 {
+    font-size:clamp(2rem, 3.5vw, 3rem);
+    font-weight:400; color:var(--navy);
+    line-height:1.2; margin-bottom:24px;
+  }
+  .about-text p {
+    color:var(--slate); font-size:.95rem;
+    line-height:1.9; margin-bottom:16px; font-weight:300;
+  }
+  .about-text .btn { margin-top:16px; }
+  .about-img { position:relative; }
+  .about-img img {
+    width:100%; display:block;
+    filter:saturate(0.8);
+  }
+  .about-img-accent {
+    position:absolute; bottom:-20px; right:-20px;
+    width:120px; height:120px;
+    border:2px solid var(--gold); z-index:-1;
+  }
+
+  /* PRACTICE AREAS */
+  .practice { padding:120px 8%; background:var(--navy); }
+  .practice .eyebrow {
+    font-size:.68rem; font-weight:600;
+    letter-spacing:3px; text-transform:uppercase;
+    color:var(--gold); margin-bottom:20px; display:block;
+    text-align:center;
+  }
+  .practice h2 {
+    font-size:clamp(2rem, 3.5vw, 3rem);
+    font-weight:400; color:var(--white);
+    text-align:center; margin-bottom:70px;
+  }
+  .practice-grid {
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:1px; background:rgba(184,151,106,0.15);
+    border:1px solid rgba(184,151,106,0.15);
+  }
+  .practice-card {
+    background:var(--navy-mid);
+    padding:48px 36px;
+    transition:background .3s ease;
+    position:relative; overflow:hidden;
+  }
+  .practice-card::after {
+    content:'';
+    position:absolute; bottom:0; left:0; right:0; height:2px;
+    background:var(--gold);
+    transform:scaleX(0); transform-origin:left;
+    transition:transform .3s ease;
+  }
+  .practice-card:hover { background:#1a2d42; }
+  .practice-card:hover::after { transform:scaleX(1); }
+  .practice-num {
+    font-family:'Cormorant Garamond', serif;
+    font-size:4rem; font-weight:300;
+    color:rgba(184,151,106,0.15); line-height:1;
+    margin-bottom:12px; display:block;
+    transition:color .3s;
+  }
+  .practice-card:hover .practice-num { color:rgba(184,151,106,0.3); }
+  .practice-card h3 {
+    font-size:1.3rem; font-weight:500;
+    color:var(--white); margin-bottom:14px;
+  }
+  .practice-card p { color:var(--text-muted); font-size:.88rem; line-height:1.75; font-weight:300; }
+
+  /* TEAM */
+  .team { padding:120px 8%; background:var(--parchment); }
+  .team .eyebrow {
+    font-size:.68rem; font-weight:600;
+    letter-spacing:3px; text-transform:uppercase;
+    color:var(--gold); margin-bottom:20px; display:block;
+  }
+  .team h2 {
+    font-size:clamp(2rem, 3.5vw, 3rem);
+    font-weight:400; color:var(--navy);
+    margin-bottom:60px; max-width:500px;
+  }
+  .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; }
+  .team-card { }
+  .team-img {
+    width:100%; aspect-ratio:3/4; overflow:hidden;
+    margin-bottom:20px; background:var(--parchment-dark);
     display:flex; align-items:center; justify-content:center;
-    font-size:1.2rem; text-decoration:none;
-    box-shadow:0 4px 14px rgba(0,0,0,0.25);
-    transition:transform .2s ease, opacity .2s ease;
-    opacity:0; pointer-events:none;
   }
-  .scroll-top.visible{ opacity:1; pointer-events:all; }
-  .scroll-top:hover{ transform:translateY(-3px); }
+  .team-img-placeholder {
+    width:80px; height:80px; border-radius:50%;
+    background:var(--navy); display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond', serif;
+    font-size:2rem; font-weight:400; color:var(--gold);
+  }
+  .team-card h3 { font-size:1.3rem; font-weight:500; color:var(--navy); margin-bottom:4px; }
+  .team-role { font-size:.75rem; color:var(--gold); font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:12px; display:block; }
+  .team-card p { color:var(--slate); font-size:.88rem; line-height:1.75; font-weight:300; }
 
-  /* WHY US */
-  .why{ background:var(--green-dark); color:#fff; }
-  .why .section-head h2, .why .section-head p{ color:#fff; }
-  .why .section-head p{ color:#c9dcbe; }
-  .why-grid{
-    display:grid; grid-template-columns:repeat(4,1fr);
-    gap:36px; max-width:1000px; margin:0 auto;
-    justify-items:center;
+  /* WHY */
+  .why {
+    padding:120px 8%;
+    background:var(--navy);
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:80px; align-items:center;
   }
-  .why-item{ text-align:center; max-width:240px; }
-  .why-item .num{
-    font-family:'Fraunces',serif; font-size:1.1rem; color:#b7e08f;
-    display:block; margin-bottom:10px; font-weight:600;
+  .why-left .eyebrow {
+    font-size:.68rem; font-weight:600;
+    letter-spacing:3px; text-transform:uppercase;
+    color:var(--gold); margin-bottom:20px; display:block;
   }
-  .why-item h3{ font-size:1.2rem; margin-bottom:8px; }
-  .why-item p{ color:#c9dcbe; font-size:.95rem; }
+  .why-left h2 {
+    font-size:clamp(2rem, 3.5vw, 3rem);
+    font-weight:400; color:var(--white);
+    margin-bottom:24px; line-height:1.2;
+  }
+  .why-left p { color:rgba(255,255,255,0.55); font-size:.95rem; line-height:1.9; font-weight:300; }
+  .why-points { display:flex; flex-direction:column; gap:0; }
+  .why-point {
+    padding:28px 0;
+    border-bottom:1px solid rgba(184,151,106,0.15);
+    display:flex; gap:20px; align-items:flex-start;
+  }
+  .why-point:first-child { border-top:1px solid rgba(184,151,106,0.15); }
+  .why-point-num {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.6rem; font-weight:300;
+    color:var(--gold); line-height:1; flex-shrink:0;
+    width:32px;
+  }
+  .why-point h3 { font-size:1rem; font-weight:600; color:var(--white); margin-bottom:6px; letter-spacing:.3px; }
+  .why-point p { color:rgba(255,255,255,0.5); font-size:.88rem; line-height:1.7; font-weight:300; }
 
   /* CONTACT */
-  .contact{ background:#fff; }
-  .contact-wrap{
-    max-width:900px; margin:0 auto;
-    background:var(--cream);
-    border-radius:24px;
-    padding:60px 50px;
-    text-align:center;
+  .contact { padding:120px 8%; background:var(--parchment-dark); }
+  .contact-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; }
+  .contact-left .eyebrow {
+    font-size:.68rem; font-weight:600;
+    letter-spacing:3px; text-transform:uppercase;
+    color:var(--gold); margin-bottom:20px; display:block;
   }
-  .contact-wrap h2{ font-size:clamp(1.8rem,4vw,2.4rem); margin-bottom:14px; }
-  .contact-wrap p{ color:var(--muted); margin-bottom:30px; }
-  .contact-details{
-    display:flex; gap:40px; justify-content:center; flex-wrap:wrap; margin-top:34px;
+  .contact-left h2 {
+    font-size:clamp(2rem, 3.5vw, 3rem);
+    font-weight:400; color:var(--navy);
+    margin-bottom:24px; line-height:1.2;
   }
-  .contact-item{ text-align:left; }
-  .contact-item .label{
-    text-transform:uppercase; letter-spacing:2px; font-size:.75rem;
-    color:var(--green); font-weight:700; margin-bottom:6px;
-  }
-  .contact-item a{ color:var(--text); text-decoration:none; font-weight:600; font-size:1.05rem; }
-  .contact-item a:hover{ color:var(--green); }
+  .contact-left p { color:var(--slate); font-size:.95rem; line-height:1.9; font-weight:300; margin-bottom:40px; }
+  .contact-detail { display:flex; gap:16px; margin-bottom:24px; align-items:flex-start; }
+  .contact-detail-icon { color:var(--gold); font-size:1rem; margin-top:2px; flex-shrink:0; }
+  .contact-detail-label { font-size:.65rem; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-bottom:4px; }
+  .contact-detail-value { font-size:.92rem; font-weight:500; color:var(--navy); }
+  .contact-detail-value a { color:var(--navy); text-decoration:none; }
+  .contact-detail-value a:hover { color:var(--gold); }
 
-  footer{
-    background:#1a2e12; color:#a9b89c; text-align:center;
-    padding:34px 6%; font-size:.88rem;
+  .contact-form { background:var(--white); padding:48px 40px; }
+  .contact-form h3 {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.6rem; font-weight:400;
+    color:var(--navy); margin-bottom:32px;
   }
-  footer .footer-logo{
-    font-family:'Fraunces',serif; color:#fff; font-size:1.2rem; margin-bottom:8px;
+  .form-group { margin-bottom:20px; }
+  .form-group label {
+    display:block; font-size:.65rem; font-weight:700;
+    letter-spacing:2px; text-transform:uppercase;
+    color:var(--text-muted); margin-bottom:8px;
   }
+  .form-group input, .form-group select, .form-group textarea {
+    width:100%; background:#fafafa;
+    border:1px solid var(--parchment-dark);
+    border-bottom:1px solid rgba(13,27,42,0.2);
+    padding:12px 0; color:var(--navy);
+    font-size:.9rem; font-family:'Inter', sans-serif;
+    outline:none; transition:border-color .2s;
+    border-radius:0;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-bottom-color:var(--gold);
+  }
+  .form-group textarea { height:110px; resize:none; padding:12px; }
+  .form-group select { padding:12px 0; background:#fafafa; }
+  .form-submit {
+    width:100%; padding:15px;
+    background:var(--navy); color:var(--white); border:none;
+    font-family:'Inter', sans-serif;
+    font-size:.75rem; font-weight:600;
+    letter-spacing:2.5px; text-transform:uppercase;
+    cursor:pointer; transition:background .2s;
+  }
+  .form-submit:hover { background:var(--gold); color:var(--navy); }
 
-  .float-call{
+  /* FOOTER */
+  footer {
+    background:var(--navy); padding:48px 8%;
+    display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:24px;
+    border-top:1px solid rgba(184,151,106,0.2);
+  }
+  .footer-logo {
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.2rem; font-weight:600;
+    color:var(--white); letter-spacing:2px; text-transform:uppercase;
+  }
+  .footer-logo span { color:var(--gold); }
+  footer p { color:rgba(255,255,255,0.3); font-size:.8rem; }
+  .footer-links { display:flex; gap:24px; }
+  .footer-links a { color:rgba(255,255,255,0.4); font-size:.78rem; text-decoration:none; letter-spacing:1px; text-transform:uppercase; transition:color .2s; }
+  .footer-links a:hover { color:var(--gold); }
+
+  /* FLOAT */
+  .float-call {
     position:fixed; bottom:26px; right:26px; z-index:200;
-    width:56px; height:56px; border-radius:50%;
-    background:var(--green); color:#fff;
+    width:54px; height:54px; border-radius:50%;
+    background:var(--gold); color:var(--navy);
     display:flex; align-items:center; justify-content:center;
-    font-size:1.4rem; text-decoration:none;
-    box-shadow:0 8px 20px rgba(58,125,44,0.4);
-    transition:transform .2s ease;
+    font-size:1.3rem; text-decoration:none;
+    box-shadow:0 6px 20px rgba(184,151,106,0.4);
+    transition:transform .2s;
   }
-  .float-call:hover{ transform:scale(1.08); }
+  .float-call:hover { transform:scale(1.08); }
+  .scroll-top {
+    position:fixed; bottom:92px; right:28px; z-index:200;
+    width:42px; height:42px; border-radius:50%;
+    background:var(--navy); color:var(--gold);
+    border:1px solid rgba(184,151,106,0.4);
+    display:flex; align-items:center; justify-content:center;
+    font-size:.9rem; text-decoration:none;
+    opacity:0; pointer-events:none;
+    transition:opacity .2s, transform .2s;
+  }
+  .scroll-top.visible { opacity:1; pointer-events:all; }
+  .scroll-top:hover { transform:translateY(-3px); }
 
-  @media (max-width:768px){
-    .nav-links{ display:none; }
-    .gallery-grid{ grid-template-columns:1fr; }
-    .contact-details{ flex-direction:column; gap:20px; align-items:center; }
-    .contact-item{ text-align:center; }
-    section{ padding:70px 6%; }
+  /* REVEAL */
+  .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal-left { opacity:0; transform:translateX(-30px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal-right { opacity:0; transform:translateX(30px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.on, .reveal-left.on, .reveal-right.on { opacity:1; transform:none; }
+  .d1 { transition-delay:.1s; }
+  .d2 { transition-delay:.2s; }
+  .d3 { transition-delay:.3s; }
+  .d4 { transition-delay:.4s; }
+  .d5 { transition-delay:.5s; }
+  .d6 { transition-delay:.6s; }
+
+  /* MOBILE */
+  @media (max-width:900px) {
+    .hero, .about, .why, .contact-inner { grid-template-columns:1fr; }
+    .hero-right { height:50vh; }
+    .practice-grid { grid-template-columns:1fr; }
+    .team-grid { grid-template-columns:1fr 1fr; }
+    .hero-credentials { grid-template-columns:repeat(3,1fr); position:relative; }
+    .nav-links { display:none; }
+    footer { flex-direction:column; text-align:center; }
+    .footer-links { justify-content:center; }
+    .contact-form { padding:32px 24px; }
   }
 </style>
 </head>
 <body>
 
-<nav id="navbar">
-  <div class="logo">The Garden <span>Crew</span></div>
+<!-- NAV -->
+<nav>
+  <div class="logo">Nelson <span>Legal</span></div>
   <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#work">Our Work</a></li>
-    <li><a href="#why">Why Us</a></li>
-    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#practice">Practice Areas</a></li>
+    <li><a href="#team">Our Team</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero" id="top">
-  <div class="photo-banner-grid">
-    <img src="garden2.jpg" alt="Expert hedge trimming and shaping" class="banner-img">
-    <img src="garden1.jpg" alt="Lawn mowing and garden care" class="banner-img">
-  </div>
-  <div class="hero-overlay"></div>
-
-  <div class="hero-badge">🌿 Nelson, New Zealand</div>
-
-  <div class="hero-content">
-    <h1>Your garden, <em>beautiful.</em></h1>
-    <p>Fully insured, professional gardening services across Nelson. Hedges, lawns and full garden maintenance at excellent rates.</p>
-    <div class="hero-buttons">
-      <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
-      <a href="#services" class="btn btn-outline">Our Services</a>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Solicitors & Barristers — Nelson, NZ</div>
+    <h1>Trusted Legal <em>Counsel.</em></h1>
+    <p class="hero-sub">Nelson Legal provides clear, practical legal advice to individuals and businesses across the Top of the South. We cut through complexity so you can make confident decisions.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-gold">Book a Consultation</a>
+      <a href="#practice" class="btn btn-outline">Our Services</a>
     </div>
   </div>
-
-  <div class="hero-ticker">
-    <span>Fully Insured</span>
-    <span>·</span>
-    <span>Excellent Rates</span>
-    <span>·</span>
-    <span>Free Quotes</span>
-    <span>·</span>
-    <span>Nelson Wide</span>
-    <span>·</span>
-    <span>Hedge Trimming</span>
-    <span>·</span>
-    <span>Lawn Mowing</span>
-    <span>·</span>
-    <span>Garden Maintenance</span>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80" alt="Nelson Legal offices">
+  </div>
+  <div class="hero-credentials">
+    <div class="credential"><span class="credential-num">25+</span><span class="credential-label">Years Combined</span></div>
+    <div class="credential"><span class="credential-num">1,200+</span><span class="credential-label">Clients Served</span></div>
+    <div class="credential"><span class="credential-num">100%</span><span class="credential-label">Confidential</span></div>
   </div>
 </section>
 
-<section class="services" id="services">
-  <div class="section-head">
-    <div class="eyebrow">What We Do</div>
-    <h2>Full-service garden care</h2>
-    <p>Whatever your section needs, we've got it covered.</p>
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text reveal-left">
+    <span class="eyebrow">About the Firm</span>
+    <div class="gold-rule"></div>
+    <h2>Legal expertise rooted in Nelson.</h2>
+    <p>Established in Nelson, we have been serving the local community and wider Top of the South region for over two decades. Our team combines deep local knowledge with broad legal expertise across property, family, commercial and employment law.</p>
+    <p>We believe the best legal advice is clear, honest and focused on your outcomes — not billable hours. Every client matters to us, whether you're buying your first home or navigating a complex commercial dispute.</p>
+    <a href="#contact" class="btn btn-gold">Speak to a Lawyer</a>
   </div>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon">🌿</div>
-      <h3>Lawn Care & Mowing</h3>
-      <p>Regular mowing, edging and lawn health to keep your section looking sharp all season.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">✂️</div>
-      <h3>Hedge & Tree Trimming</h3>
-      <p>Precise shaping and pruning that keeps hedges neat and trees healthy.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🌸</div>
-      <h3>Garden Bed Maintenance</h3>
-      <p>Weeding, mulching and planting to keep your beds full and flourishing.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🍂</div>
-      <h3>Seasonal Tidy-Ups</h3>
-      <p>One-off clean-ups to get overgrown or neglected sections back under control.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🪴</div>
-      <h3>Garden Design & Planting</h3>
-      <p>Thoughtful planting plans that suit your space, sun and soil.</p>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🧰</div>
-      <h3>Ongoing Maintenance Plans</h3>
-      <p>Set-and-forget scheduled visits so your garden never gets away on you.</p>
-    </div>
+  <div class="about-img reveal-right">
+    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Nelson Legal offices">
+    <div class="about-img-accent"></div>
   </div>
 </section>
 
-<section class="gallery" id="work">
-  <div class="section-head">
-    <div class="eyebrow">Recent Projects</div>
-    <h2>Our Work</h2>
-    <p>A look at some of the gardens we've helped bring back to life around Nelson.</p>
-  </div>
-  <div class="gallery-grid">
-    <div class="gallery-item" data-label="Lawn & Hedge Refresh"><img src="garden1.jpg" alt="Lawn and hedge refresh"></div>
-    <div class="gallery-item" data-label="Garden Bed Makeover"><img src="garden3.jpg" alt="Garden bed makeover"></div>
-    <div class="gallery-item" data-label="Full Section Tidy-Up"><img src="garden2.jpg" alt="Full section tidy up"></div>
-  </div>
-</section>
-
-<section class="why" id="why">
-  <div class="section-head">
-    <div class="eyebrow">Why The Garden Crew</div>
-    <h2>Local, reliable, and easy to deal with</h2>
-    <p>Here's why Nelson homeowners choose us for their gardens.</p>
-  </div>
-  <div class="why-grid">
-    <div class="why-item">
-      <span class="num">Local</span>
-      <h3>Nelson Based</h3>
-      <p>We know the local climate, soil and seasons — and we're just around the corner.</p>
+<!-- PRACTICE AREAS -->
+<section class="practice" id="practice">
+  <span class="eyebrow reveal">Practice Areas</span>
+  <h2 class="reveal d1">What We Do</h2>
+  <div class="practice-grid">
+    <div class="practice-card reveal d1">
+      <span class="practice-num">01</span>
+      <h3>Property & Conveyancing</h3>
+      <p>Buying or selling property? We handle all residential and commercial conveyancing, title searches, and settlement with meticulous care.</p>
     </div>
-    <div class="why-item">
-      <span class="num">Reliable</span>
-      <h3>Always On Time</h3>
-      <p>We turn up when we say we will, every time.</p>
+    <div class="practice-card reveal d2">
+      <span class="practice-num">02</span>
+      <h3>Family Law</h3>
+      <p>Separation, divorce, custody and care arrangements, relationship property, and domestic matters — handled with sensitivity and expertise.</p>
     </div>
-    <div class="why-item">
-      <span class="num">Flexible</span>
-      <h3>One-Off or Ongoing</h3>
-      <p>Book a single tidy-up or set up a regular maintenance plan — your call.</p>
+    <div class="practice-card reveal d3">
+      <span class="practice-num">03</span>
+      <h3>Commercial Law</h3>
+      <p>Business structure, contracts, shareholder agreements, mergers and acquisitions — practical advice that protects your business interests.</p>
     </div>
-    <div class="why-item">
-      <span class="num">Honest</span>
-      <h3>Straightforward Pricing</h3>
-      <p>No hidden costs. You know what you're paying before we start.</p>
+    <div class="practice-card reveal d4">
+      <span class="practice-num">04</span>
+      <h3>Employment Law</h3>
+      <p>Employer or employee — we provide clear advice on employment agreements, disputes, redundancy, and personal grievances.</p>
+    </div>
+    <div class="practice-card reveal d5">
+      <span class="practice-num">05</span>
+      <h3>Wills & Estates</h3>
+      <p>Estate planning, will preparation, powers of attorney, and estate administration. Protecting what matters most for the people you love.</p>
+    </div>
+    <div class="practice-card reveal d6">
+      <span class="practice-num">06</span>
+      <h3>Dispute Resolution</h3>
+      <p>Negotiation, mediation, and litigation support. We pursue efficient resolution while always being prepared to advocate strongly in court.</p>
     </div>
   </div>
 </section>
 
+<!-- TEAM -->
+<section class="team" id="team">
+  <span class="eyebrow reveal">Our People</span>
+  <div class="gold-rule reveal"></div>
+  <h2 class="reveal d1">Meet the Team</h2>
+  <div class="team-grid">
+    <div class="team-card reveal d1">
+      <div class="team-img"><div class="team-img-placeholder">JH</div></div>
+      <h3>James Harrington</h3>
+      <span class="team-role">Senior Partner</span>
+      <p>25 years of practice across property and commercial law. James leads the firm and personally oversees our most complex transactions.</p>
+    </div>
+    <div class="team-card reveal d2">
+      <div class="team-img"><div class="team-img-placeholder">SC</div></div>
+      <h3>Sarah Chen</h3>
+      <span class="team-role">Family Law Specialist</span>
+      <p>Dedicated exclusively to family law matters. Sarah's compassionate and practical approach has helped hundreds of families navigate difficult times.</p>
+    </div>
+    <div class="team-card reveal d3">
+      <div class="team-img"><div class="team-img-placeholder">MT</div></div>
+      <h3>Mark Tūhoe</h3>
+      <span class="team-role">Employment & Disputes</span>
+      <p>A specialist in employment law and dispute resolution. Mark is known for his straightforward advice and strong advocacy when it counts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="why-left reveal-left">
+    <span class="eyebrow">Why Nelson Legal</span>
+    <div class="gold-rule"></div>
+    <h2>Honest advice. Clear fees. Real outcomes.</h2>
+    <p>We've built our reputation on doing right by our clients — not on billing the most hours. When you come to Nelson Legal, you get straight answers and a team that genuinely cares about your result.</p>
+  </div>
+  <div class="why-points reveal-right">
+    <div class="why-point">
+      <span class="why-point-num">I</span>
+      <div>
+        <h3>Fixed-fee options available</h3>
+        <p>We offer fixed fees on many services so you know exactly what you're paying before we start.</p>
+      </div>
+    </div>
+    <div class="why-point">
+      <span class="why-point-num">II</span>
+      <div>
+        <h3>Same-day consultations</h3>
+        <p>Urgent legal matters can't wait. We make every effort to see you the same day when time is critical.</p>
+      </div>
+    </div>
+    <div class="why-point">
+      <span class="why-point-num">III</span>
+      <div>
+        <h3>Local knowledge, broad expertise</h3>
+        <p>We know Nelson and the Top of the South. That local context shapes the advice we give and how we deliver it.</p>
+      </div>
+    </div>
+    <div class="why-point">
+      <span class="why-point-num">IV</span>
+      <div>
+        <h3>Fully confidential</h3>
+        <p>Everything you share with us stays with us. Your privacy and trust are the foundation of everything we do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="contact-wrap">
-    <h2>Ready for a tidier garden?</h2>
-    <p>Get in touch for a free, no-obligation quote.</p>
-    <a href="tel:0270000000" class="btn btn-primary">Call Now</a>
-    <div class="contact-details">
-      <div class="contact-item">
-        <div class="label">Phone</div>
-        <a href="tel:0270000000">027 000 0000</a>
+  <div class="contact-inner">
+    <div class="contact-left reveal-left">
+      <span class="eyebrow">Get in Touch</span>
+      <div class="gold-rule"></div>
+      <h2>Book a Consultation</h2>
+      <p>Whether you have a straightforward question or a complex matter, we're here to help. All initial consultations are confidential.</p>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📞</div>
+        <div>
+          <div class="contact-detail-label">Phone</div>
+          <div class="contact-detail-value"><a href="tel:035480000">03 548 0000</a></div>
+        </div>
       </div>
-      <div class="contact-item">
-        <div class="label">Email</div>
-        <a href="mailto:hello@thegardencrewnelson.co.nz">hello@thegardencrewnelson.co.nz</a>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">✉️</div>
+        <div>
+          <div class="contact-detail-label">Email</div>
+          <div class="contact-detail-value"><a href="mailto:hello@nelsonlegal.co.nz">hello@nelsonlegal.co.nz</a></div>
+        </div>
       </div>
-      <div class="contact-item">
-        <div class="label">Area</div>
-        <a href="#">Nelson, NZ</a>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">📍</div>
+        <div>
+          <div class="contact-detail-label">Location</div>
+          <div class="contact-detail-value">Hardy Street, Nelson Central</div>
+        </div>
       </div>
+      <div class="contact-detail">
+        <div class="contact-detail-icon">🕐</div>
+        <div>
+          <div class="contact-detail-label">Hours</div>
+          <div class="contact-detail-value">Mon–Fri 8:30am – 5:00pm</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form reveal-right">
+      <h3>Send us a message</h3>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Area of Law</label>
+        <select>
+          <option>Property & Conveyancing</option>
+          <option>Family Law</option>
+          <option>Commercial Law</option>
+          <option>Employment Law</option>
+          <option>Wills & Estates</option>
+          <option>Dispute Resolution</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Your Matter</label>
+        <textarea placeholder="Brief description of what you need help with..."></textarea>
+      </div>
+      <button class="form-submit">Send Enquiry</button>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">The Garden <span style="color:#a8d98a;">Crew</span></div>
-  <div>© 2026 The Garden Crew · Nelson NZ</div>
+  <div class="footer-logo">Nelson <span>Legal</span></div>
+  <p>© 2026 Nelson Legal Ltd · All rights reserved · Nelson, New Zealand<br><span style="font-size:.72rem;opacity:.5;">Demo site only — built by <a href="https://nelsonwebco.co.nz" style="color:rgba(255,255,255,0.4);">Nelson Web Co</a></span></p>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#practice">Services</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Contact</a>
+  </div>
 </footer>
 
-<a class="float-call" href="tel:0270000000" title="Call The Garden Crew">📞</a>
-<a class="scroll-top" id="scrollTop" href="#top" title="Back to top">↑</a>
+<a class="float-call" href="tel:035480000" title="Call Nelson Legal">📞</a>
+<a class="scroll-top" id="scrollTop" href="#top">↑</a>
 
 <script>
   window.addEventListener('scroll', function(){
-    const nav = document.getElementById('navbar');
-    if(window.scrollY > 40){ nav.classList.add('scrolled'); }
-    else{ nav.classList.remove('scrolled'); }
     const btn = document.getElementById('scrollTop');
-    if(window.scrollY > 400){ btn.classList.add('visible'); }
-    else{ btn.classList.remove('visible'); }
+    if(window.scrollY > 400){ btn.classList.add('visible'); } else { btn.classList.remove('visible'); }
   });
+
+  const els = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('on'); }
+      else { e.target.classList.remove('on'); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(el => obs.observe(el));
 </script>
 
 </body>
